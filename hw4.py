@@ -208,6 +208,18 @@ class TestAllMethods(unittest.TestCase):
     
 ### Write main function
 def main():
+    Customer(name)
+    inventory = {"Mac n Cheese": 40, "Sushi": 30, "Sandwich": 50}
+    inventory = {"Pizza": 50, "Burrito": 20, "Baked Ziti": 45}
+    Customer("Jennie", 120)
+    Customer("Emily", 150)
+    Stall("The Tannenbaum Table", {"Mac n Cheese": 40, "Sushi": 30, "Sandwich": 50}, cost=7)
+    Stall("The Michigan Wolverines", {"Pizza": 50, "Burrito": 20, "Baked Ziti": 45}, cost=7)
+    Cashier("Leslie", ["The Tannenbaum Table", "The Michigan Wolverines"])
+    Cashier("Jeffrey", ["The Tannenbaum Table", "The Michigan Wolverines"])
+    #Customer.validate_order(cashier, stall, item_name, quantity)
+    Customer.validate_order(self,cashier="Leslie", stall="The Tannenbaum Table", item_name="Mac n Cheese", quantity=30)
+    validate_order
     #Create different objects 
 
     #Try all cases in the validate_order function
@@ -220,7 +232,7 @@ def main():
     
     #case 4: the customer successfully places an order
 
-    pass
+    #pass
 
 if __name__ == "__main__":
 	main()
