@@ -179,13 +179,14 @@ class TestAllMethods(unittest.TestCase):
     def test_compute_cost(self):
         #what's wrong with the following statements?
         #can you correct them?
-        self.assertEqual(self.s1.compute_cost(self.s1,10), 51)
-        self.assertEqual(self.s3.compute_cost(self.s3,7), 45)
+        self.assertEqual(self.s1.compute_cost(5), 50)
+        self.assertEqual(self.s3.compute_cost(6), 42)
 
 	# Check that the stall can properly see when it is empty
     def test_has_item(self):
-        self.assertEqual(self.s1.has_item(self.s1, 10), True)
-        self.assertEqual(self.s3.has_item(self.s3, 10), False)
+        self.assertNotEqual(self.s1.has_item("Waffle", 10), True)
+        self.assertFalse(self.s1.has_item("Burger", 70))
+        self.assertTrue(self.s1.has_item("Burger", 7))
         # Set up to run test cases
 
         # Test to see if has_item returns True when a stall has enough items left
@@ -198,7 +199,9 @@ class TestAllMethods(unittest.TestCase):
 
 	# Test validate order
     def test_validate_order(self):
-        self.assertEqual(first, second)
+        self.assertFalse(self.f1.validate_order(self.c1, self.s1, "Burger", 2))
+        self.assertFalse(self.f1.validate_order(self.c1, self.s1, "Burger", 400))
+        self.assertEqual(self.s1.validate_order(self.c1, self.s1, "Burger", 1), None)
 		# case 1: test if a customer doesn't have enough money in their wallet to order
 
 		# case 2: test if the stall doesn't have enough food left in stock
@@ -208,7 +211,8 @@ class TestAllMethods(unittest.TestCase):
 
     # Test if a customer can add money to their wallet
     def test_reload_money(self):
-        self.assertEqual(first, second)
+        self.f2.reload_money(70)
+        self.assertEqual(self.f2.wallet, 300)
     
 ### Write main function
 def main():
@@ -225,21 +229,19 @@ def main():
         "Baked Ziti": 7,
         }
 
-    customer1 = ("Jennie", 120)
-    customer2 = ("Ali", 150)
-    customer3 = ("Chloe", 200)
+    customer1 = Customer("Jennie", 120)
+    customer2 = Customer("Ali", 150)
+    customer3 = Customer("Chloe", 200)
 
-    stall1 = Stall("The Tannenbaum Table", inventory1, 7)
-    stall2 = Stall("The Michigan Wolverines", inventory2, 10)
+    stall1 = Stall("The Tannenbaum Table", inventory1, cost=7)
+    stall2 = Stall("The Michigan Wolverines", inventory2, cost=10)
 
-    directory1 = ["The Tannenbaum Table", "The Michigan Wolverines", "Jennie's Sushi", "Chloe's Pizzeria", "Ali's Burrito Bar"]
-    directory2 = ["Marni's Macaroni", "Sydney's Sushi Bar", "Winnie's Cafe", "Ollie's Olive Garden", "Ann Arbor Sushi"]
+    cashier1 = Cashier("Ollie")
+    cashier2 = Cashier("Winnie")
 
-    cashier1 = Cashier("Ollie", directory1)
-    cashier2 = Cashier("Winnie", directory2)
-
-
-    Customer.validate_order(self, cashier=cashier1, stall=stall1, item_name="Mac n Cheese", quantity=8)
+    for c in [cashier1, cashier2]:
+        for s in [stall1, stall2]:
+            c.add_stall(s)
   
     #Create different objects 
 
