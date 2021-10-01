@@ -242,19 +242,27 @@ def main():
     for c in [cashier1, cashier2]:
         for s in [stall1, stall2]:
             c.add_stall(s)
-  
+    
     #Create different objects 
 
     #Try all cases in the validate_order function
     #Below you need to have *each customer instance* try the four cases
     #case 1: the cashier does not have the stall 
-    
+    customer1.validate_order(cashier1, "Angelo's", "Omelette", 9)
+    customer2.validate_order(cashier1, "Angelo's", "Potato", 8)
+    customer3.validate_order(cashier1, "Angelo's", "Bread", 7)
     #case 2: the casher has the stall, but not enough ordered food or the ordered food item
-    
+    customer1.validate_order(cashier1, stall1, "Mac n Cheese", 5)
+    customer2.validate_order(cashier2, stall2, "Pizza", 6)
+    customer3.validate_order(cashier1), stall1, "Sandwich", 6)
     #case 3: the customer does not have enough money to pay for the order: 
-    
+    customer1.validate_order(cashier1, stall1, "Mac n Cheese", 3)
+    customer2.validate_order(cashier2, stall2, "Pizza", 4)
+    customer3.validate_order(cashier1), stall1, "Sandwich", 4)
     #case 4: the customer successfully places an order
-
+    customer1.validate_order(cashier1, stall1, "Mac n Cheese", 1)
+    customer2.validate_order(cashier2, stall2, "Pizza", 1)
+    customer3.validate_order(cashier1), stall1, "Sandwich", 1)
     #pass
 
 if __name__ == "__main__":
