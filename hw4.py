@@ -29,7 +29,7 @@ class Customer:
     # it deducts the amount from the customer’s wallet and calls the receive_payment method on the cashier object
     def submit_order(self, cashier, stall, amount): 
         self.wallet = self.wallet - amount
-        Cashier.receive_payment(self, stall, amount)
+        cashier.receive_payment(stall, amount)
 
     # The __str__ method prints the customer's information.    
     def __str__(self):
@@ -73,37 +73,39 @@ class Cashier:
 ## Complete the Stall class here following the instructions in HW_4_instructions_rubric
 class Stall:
 
-    def __init__(self, name, inventory={}, cost = 7 , earnings = 0):
+    def __init__(self, name, inventory, cost = 7 , earnings = 0):
         self.name = name
         self.inventory = inventory
         self.cost = cost
         self.earnings = earnings
     
     def process_order(self, name, quantity): 
-        if self.inventory[name] >= quantity:
+        if self.has_item(name, quantity):
             self.inventory[name] = self.inventory[name] - quantity
         else:
-            self.inventory[name] = self.inventory[name] 
+            return "Sorry we do not have enough" + str(self.name) + "to complete your order."
     
     def has_item(self, name, quantity):
-        if self.inventory[name] >= quantity:
-            return True
+        if name in self.inventory:
+            if self.inventory[name] >= quantity:
+                return True
+            else:  
+                return False
         else:
             return False
 
     def stock_up(self, name, quantity):
-        if self.name in self.inventory:
+        if name in self.inventory:
             self.inventory[name] = self.inventory[name] + quantity
         else:
             self.inventory[name] = quantity
 
     def compute_cost(self, quantity):
-        self.earnings = quantity * self.cost
-        return self.earnings
+        total_cost = quantity * self.cost
+        return total_cost
 
     def __str__(self):
-        return "Hello, we are " + self.name + ". This is the current menu " + self.inventory.keys() + ". We charge $" + self.cost + " per item. We have $" + self.earnings + " in total."
-
+        return "Hello, we are " + str(self.name) + ". This is the current menu " + str(list(self.inventory.keys())) + ". We charge $" + str(self.cost) + " per item. We have $" + str(self.earnings) + " in total."
 
 class TestAllMethods(unittest.TestCase):
     
