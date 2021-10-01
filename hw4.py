@@ -29,7 +29,7 @@ class Customer:
     # it deducts the amount from the customer’s wallet and calls the receive_payment method on the cashier object
     def submit_order(self, cashier, stall, amount): 
         self.wallet = self.wallet - amount
-        Cashier.receive_payment(stall, money)
+        Cashier.receive_payment(self, stall, amount)
 
     # The __str__ method prints the customer's information.    
     def __str__(self):
@@ -73,7 +73,7 @@ class Cashier:
 ## Complete the Stall class here following the instructions in HW_4_instructions_rubric
 class Stall:
 
-    def __init__(self, name, inventory, cost = 7 , earnings = 0):
+    def __init__(self, name, inventory={}, cost = 7 , earnings = 0):
         self.name = name
         self.inventory = inventory
         self.cost = cost
@@ -102,7 +102,7 @@ class Stall:
         return self.earnings
 
     def __str__(self):
-        return "Hello, we are " + self.name + ". This is the current menu " + self.inventory + ". We charge $" + self.cost + " per item. We have $" + self.earnings + " in total."
+        return "Hello, we are " + self.name + ". This is the current menu " + self.inventory.keys() + ". We charge $" + self.cost + " per item. We have $" + self.earnings + " in total."
 
 
 class TestAllMethods(unittest.TestCase):
@@ -177,8 +177,8 @@ class TestAllMethods(unittest.TestCase):
     def test_compute_cost(self):
         #what's wrong with the following statements?
         #can you correct them?
-        self.assertEqual(self.s1.compute_cost(self.s1,5), 51)
-        self.assertEqual(self.s3.compute_cost(self.s3,6), 45)
+        self.assertEqual(self.s1.compute_cost(self.s1,10), 51)
+        self.assertEqual(self.s3.compute_cost(self.s3,7), 45)
 
 	# Check that the stall can properly see when it is empty
     def test_has_item(self):
@@ -208,18 +208,35 @@ class TestAllMethods(unittest.TestCase):
     
 ### Write main function
 def main():
-    Customer(name)
-    inventory = {"Mac n Cheese": 40, "Sushi": 30, "Sandwich": 50}
-    inventory = {"Pizza": 50, "Burrito": 20, "Baked Ziti": 45}
-    Customer("Jennie", 120)
-    Customer("Emily", 150)
-    Stall("The Tannenbaum Table", {"Mac n Cheese": 40, "Sushi": 30, "Sandwich": 50}, cost=7)
-    Stall("The Michigan Wolverines", {"Pizza": 50, "Burrito": 20, "Baked Ziti": 45}, cost=7)
-    Cashier("Leslie", ["The Tannenbaum Table", "The Michigan Wolverines"])
-    Cashier("Jeffrey", ["The Tannenbaum Table", "The Michigan Wolverines"])
-    #Customer.validate_order(cashier, stall, item_name, quantity)
-    Customer.validate_order(self,cashier="Leslie", stall="The Tannenbaum Table", item_name="Mac n Cheese", quantity=30)
-    validate_order
+
+    inventory1 = {
+        "Mac n Cheese": 4, 
+        "Sushi": 15, 
+        "Sandwich": 5,
+        }
+
+    inventory2 = {
+        "Pizza": 5, 
+        "Burrito": 10, 
+        "Baked Ziti": 7,
+        }
+
+    customer1 = ("Jennie", 120)
+    customer2 = ("Ali", 150)
+    customer3 = ("Chloe", 200)
+
+    stall1 = Stall("The Tannenbaum Table", inventory1, 7)
+    stall2 = Stall("The Michigan Wolverines", inventory2, 10)
+
+    directory1 = ["The Tannenbaum Table", "The Michigan Wolverines", "Jennie's Sushi", "Chloe's Pizzeria", "Ali's Burrito Bar"]
+    directory2 = ["Marni's Macaroni", "Sydney's Sushi Bar", "Winnie's Cafe", "Ollie's Olive Garden", "Ann Arbor Sushi"]
+
+    cashier1 = Cashier("Ollie", directory1)
+    cashier2 = Cashier("Winnie", directory2)
+
+
+    Customer.validate_order(self, cashier=cashier1, stall=stall1, item_name="Mac n Cheese", quantity=8)
+  
     #Create different objects 
 
     #Try all cases in the validate_order function
