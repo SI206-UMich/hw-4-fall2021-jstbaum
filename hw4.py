@@ -182,6 +182,8 @@ class TestAllMethods(unittest.TestCase):
 
 	# Check that the stall can properly see when it is empty
     def test_has_item(self):
+        self.assertEqual(self.s1.has_item(self.s1, 10), True)
+        self.assertEqual(self.s3.has_item(self.s3, 10), False)
         # Set up to run test cases
 
         # Test to see if has_item returns True when a stall has enough items left
@@ -191,20 +193,20 @@ class TestAllMethods(unittest.TestCase):
         # Test case 2: the stall does not have enough food item: 
         
         # Test case 3: the stall has the food item of the certain quantity: 
-        pass
 
 	# Test validate order
     def test_validate_order(self):
+        self.assertEqual(first, second)
 		# case 1: test if a customer doesn't have enough money in their wallet to order
 
 		# case 2: test if the stall doesn't have enough food left in stock
 
 		# case 3: check if the cashier can order item from that stall
-        pass
+     
 
     # Test if a customer can add money to their wallet
     def test_reload_money(self):
-        pass
+        self.assertEqual(first, second)
     
 ### Write main function
 def main():
