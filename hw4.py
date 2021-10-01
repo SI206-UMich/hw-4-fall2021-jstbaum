@@ -1,3 +1,5 @@
+#Name: Jennie Tannenbaum
+#ID: 03411253
 
 import unittest
 
@@ -254,15 +256,15 @@ def main():
     #case 2: the casher has the stall, but not enough ordered food or the ordered food item
     customer1.validate_order(cashier1, stall1, "Mac n Cheese", 5)
     customer2.validate_order(cashier2, stall2, "Pizza", 6)
-    customer3.validate_order(cashier1), stall1, "Sandwich", 6)
+    customer3.validate_order(cashier1, stall1, "Sandwich", 6)
     #case 3: the customer does not have enough money to pay for the order: 
     customer1.validate_order(cashier1, stall1, "Mac n Cheese", 3)
     customer2.validate_order(cashier2, stall2, "Pizza", 4)
-    customer3.validate_order(cashier1), stall1, "Sandwich", 4)
+    customer3.validate_order(cashier1, stall1, "Sandwich", 4)
     #case 4: the customer successfully places an order
     customer1.validate_order(cashier1, stall1, "Mac n Cheese", 1)
     customer2.validate_order(cashier2, stall2, "Pizza", 1)
-    customer3.validate_order(cashier1), stall1, "Sandwich", 1)
+    customer3.validate_order(cashier1, stall1, "Sandwich", 1)
     #pass
 
 if __name__ == "__main__":
